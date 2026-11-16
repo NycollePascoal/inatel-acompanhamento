@@ -60,3 +60,34 @@ html, body {
 .r { background: #FDECEA; color: #B71C1C; }
 .a { background: #FFF4E0; color: #8A5300; }
 .v { background: #E8F5E9; color: #1B5E20; }
+
+.sec {
+  padding: 20px 16px 8px;
+  color: var(--cinza);
+  font-size: 0.875rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 68px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.item b {
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.item small {
+  display: block;
+  color: var(--cinza);
+  margin-top: 2px;
+}
+
+.bar .t {
+  flex: 1;
+}
