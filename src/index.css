@@ -430,3 +430,61 @@ html, body {
   z-index: 30;
   max-width: 90vw;
 }
+
+.banner {
+  margin: 16px;
+  padding: 14px 16px;
+  border-radius: 10px;
+}
+
+.banner b {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.banner p {
+  margin: 4px 0 0;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+
+.linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 16px;
+  border: 0;
+  border-bottom: 1px solid var(--borda);
+  background: #fff;
+  font: inherit;
+  font-size: 1rem;
+  color: #222;
+  text-align: left;
+  cursor: pointer;
+}
+
+.linha:active {
+  background: #F2F2F2;
+}
+
+.ajuda {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 24px 16px;
+  min-height: 52px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--azul);
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ajuda:active {
+  opacity: 0.85;
+}

@@ -1,6 +1,6 @@
 // Regras de aprovação do Inatel
-export const MEDIA = 60;        // nota mínima para aprovar (0 a 100)
-export const FREQ_MIN = 0.75;   // presença mínima de 75%
+export const MEDIA = 60;
+export const FREQ_MIN = 0.75;
 
 // Dados de exemplo (fictícios)
 export const MATERIAS = [
@@ -12,15 +12,11 @@ export const MATERIAS = [
     notas: [{ n: "P1", nota: 80, peso: 0.5 }] },
 ];
 
-// Ordem de exibição: risco primeiro
 export const ORDEM = { "RISCO": 0, "ATENÇÃO": 1, "OK": 2 };
 
-// Calcula o risco de uma matéria
 export function avaliar(m) {
-  // 75% de presença significa poder faltar no máximo 25% das aulas
   const limite = Math.floor(m.aulas * (1 - FREQ_MIN));
   const pct = m.faltas / limite;
-
   const parcial = m.notas.reduce((soma, x) => soma + x.nota * x.peso, 0);
   const lancado = m.notas.reduce((soma, x) => soma + x.peso, 0);
   const minima = Math.max(0, Math.ceil((MEDIA - parcial) / (1 - lancado)));
@@ -29,5 +25,23 @@ export function avaliar(m) {
   if (pct >= 0.8 || minima > 80) nivel = "RISCO";
   else if (pct >= 0.6 || minima > 65) nivel = "ATENÇÃO";
 
-  return { ...m, limite, pct, minima, nivel, restam: limite - m.faltas };
+  // Por que a matéria está nesse nível?
+  const motivos = [];
+  const detalhes = [];
+  if (pct >= 0.6) {
+    motivos.push("FALTA");
+    detalhes.push(`Você usou ${Math.round(pct * 100)}% das faltas permitidas (${m.faltas} de ${limite}).`);
+  }
+  if (minima > 65) {
+    motivos.push("NOTA");
+    detalhes.push(`Para passar, você precisa de ${minima} nas próximas avaliações.`);
+  }
+  if (motivos.length === 0) {
+    detalhes.push("Nenhum risco por enquanto. Continue assim!");
+  }
+  const titulo = motivos.length
+    ? `${nivel} POR ${motivos.join(" E ")}`
+    : "SITUAÇÃO REGULAR";
+
+  return { ...m, limite, pct, minima, nivel, restam: limite - m.faltas, titulo, detalhes };
 }

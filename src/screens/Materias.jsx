@@ -1,11 +1,11 @@
 import { Chip } from "../components/Chip";
 
-export function Materias({ lista }) {
+export function Materias({ lista, abrirMateria }) {
   return (
     <>
       <div className="sec">Em risco aparecem primeiro</div>
       {lista.map((m) => (
-        <button className="item" key={m.nome}>
+        <button className="item" key={m.nome} onClick={() => abrirMateria(m)}>
           <span>
             <b>{m.nome}</b>
             <small>
