@@ -1,6 +1,6 @@
 import { MATERIAS, ORDEM, avaliar } from "./data/materias";
-import { Chip } from "./components/Chip";
 import { Icon } from "./components/Icon";
+import { Inicio } from "./screens/Inicio";
 
 export default function App() {
   const lista = MATERIAS.map(avaliar).sort(
@@ -11,21 +11,10 @@ export default function App() {
     <div className="app">
       <header className="bar">
         <Icon n="menu" />
-        <span className="t">Minhas matérias</span>
+        <span className="t">Início</span>
         <Icon n="search" />
       </header>
-      <div className="sec">Em risco aparecem primeiro</div>
-      {lista.map((m) => (
-        <div className="item" key={m.nome}>
-          <span>
-            <b>{m.nome}</b>
-            <small>
-              Faltas {m.faltas} de {m.limite} · nota mínima {m.minima}
-            </small>
-          </span>
-          <Chip nivel={m.nivel} />
-        </div>
-      ))}
+      <Inicio lista={lista} />
     </div>
   );
 }
