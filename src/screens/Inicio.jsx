@@ -1,10 +1,9 @@
 import { Icon } from "../components/Icon";
-import { Chip } from "../components/Chip";
 
 const ATALHOS = [
-  ["Notas", "bar"],
-  ["Frequência", "cal"],
-  ["Material", "book"],
+  { nome: "Notas", icone: "bar" },
+  { nome: "Frequência", icone: "cal" },
+  { nome: "Acompanhamento Acadêmico", icone: "check", destaque: true },
 ];
 
 const AVISOS = [
@@ -13,45 +12,33 @@ const AVISOS = [
 ];
 
 export function Inicio({ lista }) {
-  const risco = lista.filter((m) => m.nivel !== "OK");
-  const titulo =
-    risco.length === 0
-      ? "Tudo certo por aqui"
-      : risco.length + (risco.length === 1 ? " matéria em risco" : " matérias em risco");
+  const emRisco = lista.filter((m) => m.nivel !== "OK").length;
 
   return (
     <>
       <div className="perfil">
-        <div className="foto">AS</div>
-        <div>
+        <div className="foto">
+          <Icon n="user" s={44} />
+        </div>
+        <div className="dados">
           <b>Ana Souza</b>
-          <span>Engenharia de Software · GES</span>
+          <span>Engenharia de Software · GES-123</span>
+          <span>ana.souza@ges.inatel.br</span>
         </div>
       </div>
 
-      <button className="card">
-        <small>Seu semestre</small>
-        <strong>{titulo}</strong>
-        {risco.map((m) => (
-          <div className="lin" key={m.nome}>
-            <span>{m.nome}</span>
-            <Chip nivel={m.nivel} />
-          </div>
-        ))}
-        <em>Ver acompanhamento ›</em>
-      </button>
-
       <div className="sec">Atalhos</div>
       <div className="atalhos">
-        {ATALHOS.map(([nome, icone]) => (
-          <button key={nome}>
-            <Icon n={icone} />
-            {nome}
+        {ATALHOS.map((a) => (
+          <button key={a.nome} className={"atalho" + (a.destaque ? " destaque" : "")}>
+            <Icon n={a.icone} />
+            <span>{a.nome}</span>
+            {a.destaque && emRisco > 0 && <i className="badge">{emRisco}</i>}
           </button>
         ))}
       </div>
 
-      <div className="sec">Avisos recentes</div>
+      <div className="sec topo">Avisos</div>
       {AVISOS.map((a) => (
         <div className="aviso" key={a.titulo}>
           <div className="av">C</div>
