@@ -3,7 +3,7 @@ import { Icon } from "../components/Icon";
 const ATALHOS = [
   { nome: "Notas", icone: "bar" },
   { nome: "Frequência", icone: "cal" },
-  { nome: "Acompanhamento Acadêmico", icone: "check", destaque: true },
+  { nome: "Acompanhamento Acadêmico", icone: "check", destaque: true, destino: "materias" },
 ];
 
 const AVISOS = [
@@ -11,7 +11,7 @@ const AVISOS = [
   { titulo: "TRANSFERÊNCIA INTERNA DE CURSO/", data: "17/03/2025", para: "Prezados(as) alunos(as)," },
 ];
 
-export function Inicio({ lista }) {
+export function Inicio({ lista, abrir, aviso }) {
   const emRisco = lista.filter((m) => m.nivel !== "OK").length;
 
   return (
@@ -30,7 +30,13 @@ export function Inicio({ lista }) {
       <div className="sec">Atalhos</div>
       <div className="atalhos">
         {ATALHOS.map((a) => (
-          <button key={a.nome} className={"atalho" + (a.destaque ? " destaque" : "")}>
+          <button
+            key={a.nome}
+            className={"atalho" + (a.destaque ? " destaque" : "")}
+            onClick={() =>
+              a.destino ? abrir(a.destino) : aviso("Esta tela já existe no app atual")
+            }
+          >
             <Icon n={a.icone} />
             <span>{a.nome}</span>
             {a.destaque && emRisco > 0 && <i className="badge">{emRisco}</i>}
@@ -44,7 +50,9 @@ export function Inicio({ lista }) {
           <div className="av">C</div>
           <div className="c">
             <div className="l">
-              <span><span className="ex">!</span>CRA</span>
+              <span>
+                <span className="ex">!</span>CRA
+              </span>
               <span className="d">{a.data}</span>
             </div>
             <span className="s">{a.titulo}</span>

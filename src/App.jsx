@@ -1,20 +1,59 @@
+import { useState } from "react";
 import { MATERIAS, ORDEM, avaliar } from "./data/materias";
 import { Icon } from "./components/Icon";
+import { Drawer } from "./components/Drawer";
 import { Inicio } from "./screens/Inicio";
+import { Materias } from "./screens/Materias";
 
 export default function App() {
+  const [tela, setTela] = useState("inicio");
+  const [menu, setMenu] = useState(false);
+  const [msg, setMsg] = useState("");
+
   const lista = MATERIAS.map(avaliar).sort(
     (a, b) => ORDEM[a.nivel] - ORDEM[b.nivel]
   );
 
+  function aviso(texto) {
+    setMsg(texto);
+    setTimeout(() => setMsg(""), 2300);
+  }
+
+  function abrir(destino) {
+    setMenu(false);
+    setTela(destino);
+  }
+
+  function escolher(item) {
+    if (item.destino) abrir(item.destino);
+    else if (item.nome === "Avisos") abrir("inicio");
+    else {
+      setMenu(false);
+      aviso("Esta tela já existe no app atual");
+    }
+  }
+
   return (
     <div className="app">
       <header className="bar">
-        <Icon n="menu" />
-        <span className="t">Início</span>
+        {tela === "inicio" ? (
+          <button className="ib" aria-label="Abrir menu" onClick={() => setMenu(true)}>
+            <Icon n="menu" />
+          </button>
+        ) : (
+          <button className="ib" aria-label="Voltar" onClick={() => abrir("inicio")}>
+            <Icon n="back" />
+          </button>
+        )}
+        <span className="t">{tela === "inicio" ? "Início" : "Minhas matérias"}</span>
         <Icon n="search" />
       </header>
-      <Inicio lista={lista} />
+
+      {tela === "inicio" && <Inicio lista={lista} abrir={abrir} aviso={aviso} />}
+      {tela === "materias" && <Materias lista={lista} />}
+
+      <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />
+      {msg && <div className="sn" role="status">{msg}</div>}
     </div>
   );
 }
