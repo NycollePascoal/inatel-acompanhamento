@@ -488,3 +488,69 @@ html, body {
 .ajuda:active {
   opacity: 0.85;
 }
+
+.abas {
+  display: flex;
+  border-bottom: 1px solid var(--borda);
+}
+
+.aba {
+  flex: 1;
+  min-height: 48px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: #fff;
+  font: inherit;
+  color: var(--cinza);
+  cursor: pointer;
+}
+
+.aba.on {
+  color: var(--azul);
+  border-bottom-color: var(--azul);
+  font-weight: 500;
+}
+
+.nota {
+  display: grid;
+  grid-template-columns: 1fr 56px 84px;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.nota span:nth-child(2) {
+  font-weight: 500;
+  text-align: right;
+}
+
+.nota span:last-child {
+  color: var(--cinza);
+  text-align: right;
+}
+
+.minima {
+  margin: 16px;
+  padding: 16px;
+  border-radius: 10px;
+  background: #E7F0FA;
+  text-align: center;
+}
+
+.minima small {
+  display: block;
+  color: var(--cinza);
+}
+
+.minima strong {
+  display: block;
+  margin: 4px 0;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--azul);
+}
+
+.minima span {
+  font-size: 0.875rem;
+  color: var(--cinza);
+}

@@ -5,6 +5,7 @@ import { Drawer } from "./components/Drawer";
 import { Inicio } from "./screens/Inicio";
 import { Materias } from "./screens/Materias";
 import { Detalhe } from "./screens/Detalhe";
+import { Notas } from "./screens/Notas";
 
 export default function App() {
   const [tela, setTela] = useState("inicio");
@@ -33,7 +34,9 @@ export default function App() {
   }
 
   function voltar() {
-    abrir(tela === "detalhe" ? "materias" : "inicio");
+    if (tela === "notas" || tela === "faltas") abrir("detalhe");
+    else if (tela === "detalhe") abrir("materias");
+    else abrir("inicio");
   }
 
   function escolher(item) {
@@ -49,6 +52,7 @@ export default function App() {
     inicio: "Início",
     materias: "Minhas matérias",
     detalhe: atual ? atual.nome : "",
+    notas: "Notas",
   };
 
   return (
@@ -69,7 +73,8 @@ export default function App() {
 
       {tela === "inicio" && <Inicio lista={lista} abrir={abrir} aviso={aviso} />}
       {tela === "materias" && <Materias lista={lista} abrirMateria={abrirMateria} />}
-      {tela === "detalhe" && atual && <Detalhe m={atual} aviso={aviso} />}
+      {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} aviso={aviso} />}
+      {tela === "notas" && atual && <Notas m={atual} />}
 
       <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />
       {msg && <div className="sn" role="status">{msg}</div>}
