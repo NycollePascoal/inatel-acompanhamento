@@ -6,6 +6,9 @@ export const FREQ_MIN = 0.75;   // presença mínima de 75%
 export const MATERIAS = [
   {
     nome: "Cálculo II",
+    professor: { nome: "Prof. Carlos Lima", teams: "carlos.lima", email: "carlos.lima@inatel.br",
+      atendimento: "Terça, 10h às 12h", local: "Sala C-205" },
+    monitoria: { dia: "Segunda e quarta", horario: "14h às 16h", sala: "Sala B-102", monitor: "João Pereira" },
     componentes: [
       { tipo: "Teoria", aulas: 48, faltas: 10, justificadas: 1, notas: [
         { n: "Prova 1", nota: 40, peso: 0.3 },
@@ -16,6 +19,9 @@ export const MATERIAS = [
   },
   {
     nome: "Física II",
+    professor: { nome: "Profa. Marina Alves", teams: "marina.alves", email: "marina.alves@inatel.br",
+      atendimento: "Quinta, 16h às 18h", local: "Sala D-310" },
+    monitoria: { dia: "Terça e quinta", horario: "18h às 20h", sala: "Lab. de Física", monitor: "Beatriz Souza" },
     componentes: [
       { tipo: "Teoria", aulas: 48, faltas: 7, justificadas: 0, notas: [
         { n: "Prova 1", nota: 50, peso: 0.3 },
@@ -30,6 +36,9 @@ export const MATERIAS = [
   },
   {
     nome: "Programação",
+    professor: { nome: "Prof. Rafael Costa", teams: "rafael.costa", email: "rafael.costa@inatel.br",
+      atendimento: "Sexta, 14h às 16h", local: "Sala A-101" },
+    monitoria: null,
     componentes: [
       { tipo: "Teoria", aulas: 48, faltas: 2, justificadas: 0, notas: [
         { n: "Prova 1", nota: 80, peso: 0.5 },

@@ -611,3 +611,89 @@ html, body {
   border-top: 1px solid var(--borda);
   border-bottom: 1px solid var(--borda);
 }
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: calc(100% - 32px);
+  min-height: 88px;
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.opcao:active {
+  background: #F2F2F2;
+}
+
+.opcao svg {
+  flex: none;
+  color: var(--azul);
+}
+
+.opcao b {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.opcao small {
+  color: var(--cinza);
+}
+
+.info {
+  margin: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #F5F7FA;
+}
+
+.info h2 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.par {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--borda);
+}
+
+.par:last-child {
+  border-bottom: 0;
+}
+
+.par span {
+  color: var(--cinza);
+}
+
+.par b {
+  font-weight: 500;
+  text-align: right;
+}
+
+.par a {
+  color: var(--azul);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.vazio {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--cinza);
+}
+
+.vazio b {
+  color: #222;
+  font-size: 1.05rem;
+}

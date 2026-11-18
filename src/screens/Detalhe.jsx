@@ -1,4 +1,4 @@
-export function Detalhe({ m, abrir, aviso }) {
+export function Detalhe({ m, abrir }) {
   const cor = m.nivel === "RISCO" ? "r" : m.nivel === "ATENÇÃO" ? "a" : "v";
 
   return (
@@ -19,7 +19,7 @@ export function Detalhe({ m, abrir, aviso }) {
         <span>›</span>
       </button>
 
-      <button className="ajuda" onClick={() => aviso("Tela de Ajuda: em breve")}>
+      <button className="ajuda" onClick={() => abrir("ajuda")}>
         Preciso de ajuda nessa matéria
       </button>
     </>

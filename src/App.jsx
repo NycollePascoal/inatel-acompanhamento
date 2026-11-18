@@ -7,6 +7,9 @@ import { Materias } from "./screens/Materias";
 import { Detalhe } from "./screens/Detalhe";
 import { Notas } from "./screens/Notas";
 import { Faltas } from "./screens/Faltas";
+import { Ajuda } from "./screens/Ajuda";
+import { Monitoria } from "./screens/Monitoria";
+import { Professor } from "./screens/Professor";
 
 export default function App() {
   const [tela, setTela] = useState("inicio");
@@ -35,7 +38,8 @@ export default function App() {
   }
 
   function voltar() {
-    if (tela === "notas" || tela === "faltas") abrir("detalhe");
+    if (tela === "monitoria" || tela === "professor") abrir("ajuda");
+    else if (tela === "ajuda" || tela === "notas" || tela === "faltas") abrir("detalhe");
     else if (tela === "detalhe") abrir("materias");
     else abrir("inicio");
   }
@@ -55,6 +59,9 @@ export default function App() {
     detalhe: atual ? atual.nome : "",
     notas: "Notas",
     faltas: "Faltas",
+    ajuda: "Ajuda",
+    monitoria: "Monitoria",
+    professor: "Professor",
   };
 
   return (
@@ -75,9 +82,12 @@ export default function App() {
 
       {tela === "inicio" && <Inicio lista={lista} abrir={abrir} aviso={aviso} />}
       {tela === "materias" && <Materias lista={lista} abrirMateria={abrirMateria} />}
-      {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} aviso={aviso} />}
+      {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} />}
       {tela === "notas" && atual && <Notas m={atual} />}
-            {tela === "faltas" && atual && <Faltas m={atual} />}
+      {tela === "faltas" && atual && <Faltas m={atual} />}
+      {tela === "ajuda" && atual && <Ajuda m={atual} abrir={abrir} />}
+      {tela === "monitoria" && atual && <Monitoria m={atual} abrir={abrir} />}
+      {tela === "professor" && atual && <Professor m={atual} />}
 
       <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />
       {msg && <div className="sn" role="status">{msg}</div>}
