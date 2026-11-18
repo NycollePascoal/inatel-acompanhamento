@@ -14,7 +14,7 @@ export function Detalhe({ m, abrir, aviso }) {
         <span>Notas</span>
         <span>›</span>
       </button>
-      <button className="linha" onClick={() => aviso("Tela de Faltas: próximo passo")}>
+      <button className="linha" onClick={() => abrir("faltas")}>
         <span>Faltas</span>
         <span>›</span>
       </button>

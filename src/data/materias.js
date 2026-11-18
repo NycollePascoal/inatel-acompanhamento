@@ -7,7 +7,7 @@ export const MATERIAS = [
   {
     nome: "Cálculo II",
     componentes: [
-      { tipo: "Teoria", aulas: 48, faltas: 10, notas: [
+      { tipo: "Teoria", aulas: 48, faltas: 10, justificadas: 1, notas: [
         { n: "Prova 1", nota: 40, peso: 0.3 },
         { n: "Prova 2", nota: null, peso: 0.4 },
         { n: "Trabalho", nota: null, peso: 0.3 },
@@ -17,12 +17,12 @@ export const MATERIAS = [
   {
     nome: "Física II",
     componentes: [
-      { tipo: "Teoria", aulas: 48, faltas: 7, notas: [
+      { tipo: "Teoria", aulas: 48, faltas: 7, justificadas: 0, notas: [
         { n: "Prova 1", nota: 50, peso: 0.3 },
         { n: "Prova 2", nota: 55, peso: 0.3 },
         { n: "Trabalho", nota: null, peso: 0.4 },
       ] },
-      { tipo: "Lab", aulas: 16, faltas: 3, notas: [
+      { tipo: "Lab", aulas: 16, faltas: 3, justificadas: 1, notas: [
         { n: "Relatório 1", nota: 70, peso: 0.5 },
         { n: "Relatório 2", nota: null, peso: 0.5 },
       ] },
@@ -31,7 +31,7 @@ export const MATERIAS = [
   {
     nome: "Programação",
     componentes: [
-      { tipo: "Teoria", aulas: 48, faltas: 2, notas: [
+      { tipo: "Teoria", aulas: 48, faltas: 2, justificadas: 0, notas: [
         { n: "Prova 1", nota: 80, peso: 0.5 },
         { n: "Prova 2", nota: null, peso: 0.5 },
       ] },

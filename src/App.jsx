@@ -6,6 +6,7 @@ import { Inicio } from "./screens/Inicio";
 import { Materias } from "./screens/Materias";
 import { Detalhe } from "./screens/Detalhe";
 import { Notas } from "./screens/Notas";
+import { Faltas } from "./screens/Faltas";
 
 export default function App() {
   const [tela, setTela] = useState("inicio");
@@ -53,6 +54,7 @@ export default function App() {
     materias: "Minhas matérias",
     detalhe: atual ? atual.nome : "",
     notas: "Notas",
+    faltas: "Faltas",
   };
 
   return (
@@ -75,6 +77,7 @@ export default function App() {
       {tela === "materias" && <Materias lista={lista} abrirMateria={abrirMateria} />}
       {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} aviso={aviso} />}
       {tela === "notas" && atual && <Notas m={atual} />}
+            {tela === "faltas" && atual && <Faltas m={atual} />}
 
       <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />
       {msg && <div className="sn" role="status">{msg}</div>}
