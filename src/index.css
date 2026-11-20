@@ -697,3 +697,38 @@ html, body {
   color: #222;
   font-size: 1.05rem;
 }
+
+.gen {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--cinza);
+}
+
+.gen .ico {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #E7F0FA;
+  color: var(--azul);
+}
+
+.gen b {
+  display: block;
+  margin-bottom: 6px;
+  color: #222;
+  font-size: 1.1rem;
+}
+
+.gen p {
+  margin: 0 0 24px;
+}
+
+.sk {
+  height: 14px;
+  margin: 14px auto 0;
+  border-radius: 7px;
+  background: #ECEFF3;
+}

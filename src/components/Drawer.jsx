@@ -1,17 +1,59 @@
 import { Icon } from "./Icon";
 
+const item = (nome, icone, extra) => ({ nome, icone, ...extra });
+
 const MENU = [
   {
     titulo: "Mensagens Acadêmicas",
-    itens: [{ nome: "Avisos", icone: "mail" }],
+    itens: [item("Avisos", "mail")],
   },
   {
     titulo: "Aproveitamento Escolar",
     itens: [
-      { nome: "Notas", icone: "bar" },
-      { nome: "Frequência", icone: "cal" },
-      { nome: "Acompanhamento Acadêmico", icone: "check", novo: true, destino: "materias" },
-      { nome: "Material Didático", icone: "book" },
+      item("Acompanhamento Acadêmico", "check", { novo: true, destino: "materias" }),
+      item("Notas", "bar"),
+      item("Frequência", "cal"),
+      item("Material Didático", "book"),
+      item("Plano de Ensino", "doc"),
+      item("Histórico", "school"),
+      item("Coeficientes", "clip"),
+    ],
+  },
+  {
+    titulo: "Atividades Complementares",
+    itens: [
+      item("Avaliações", "bar"),
+      item("Frequência", "cal"),
+      item("Eletivas", "cal"),
+      item("Obrigatórias", "check"),
+    ],
+  },
+  {
+    titulo: "Calendários e Horários",
+    itens: [
+      item("Calendário Acadêmico", "cal"),
+      item("Eventos Inatel", "cal"),
+      item("Provas", "list"),
+      item("Reposições", "edit"),
+      item("Horários de Aula", "clock"),
+      item("Cronograma de Aula", "cal"),
+      item("Horários de Monitores", "clock"),
+    ],
+  },
+  {
+    titulo: "Financeiro",
+    itens: [item("Tesouraria", "money")],
+  },
+  {
+    titulo: "Outras Opções",
+    itens: [
+      item("Consulta de Pedidos", "check"),
+      item("Avaliação Docente", "okc"),
+      item("Pesquisa Institucional", "cal"),
+      item("Central de Cópias", "upload"),
+      item("Requerimentos", "edit"),
+      item("Configurações", "gear"),
+      item("Sair", "power"),
     ],
   },
 ];
@@ -35,7 +77,7 @@ export function Drawer({ aberto, fechar, escolher }) {
             <div className="ds">{sec.titulo}</div>
             {sec.itens.map((it) => (
               <button
-                key={it.nome}
+                key={sec.titulo + it.nome}
                 className={"di" + (it.novo ? " novo" : "")}
                 onClick={() => escolher(it)}
               >
@@ -46,9 +88,6 @@ export function Drawer({ aberto, fechar, escolher }) {
             ))}
           </div>
         ))}
-
-        <div className="hr" />
-        <div className="ds">Outras opções do app atual…</div>
       </nav>
     </>
   );

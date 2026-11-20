@@ -3,7 +3,7 @@ import { Icon } from "../components/Icon";
 const ATALHOS = [
   { nome: "Notas", icone: "bar" },
   { nome: "Frequência", icone: "cal" },
-  { nome: "Acompanhamento Acadêmico", icone: "check", destaque: true, destino: "materias" },
+  { nome: "Acompanhamento Acadêmico", icone: "check", destino: "materias" },
 ];
 
 const AVISOS = [
@@ -11,9 +11,7 @@ const AVISOS = [
   { titulo: "TRANSFERÊNCIA INTERNA DE CURSO/", data: "17/03/2025", para: "Prezados(as) alunos(as)," },
 ];
 
-export function Inicio({ lista, abrir, aviso }) {
-  const emRisco = lista.filter((m) => m.nivel !== "OK").length;
-
+export function Inicio({ abrir, geral }) {
   return (
     <>
       <div className="perfil">
@@ -33,13 +31,10 @@ export function Inicio({ lista, abrir, aviso }) {
           <button
             key={a.nome}
             className={"atalho" + (a.destaque ? " destaque" : "")}
-            onClick={() =>
-              a.destino ? abrir(a.destino) : aviso("Esta tela já existe no app atual")
-            }
+            onClick={() => (a.destino ? abrir(a.destino) : geral(a.nome, a.icone))}
           >
             <Icon n={a.icone} />
             <span>{a.nome}</span>
-            {a.destaque && emRisco > 0 && <i className="badge">{emRisco}</i>}
           </button>
         ))}
       </div>

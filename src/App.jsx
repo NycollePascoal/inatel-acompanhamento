@@ -10,22 +10,18 @@ import { Faltas } from "./screens/Faltas";
 import { Ajuda } from "./screens/Ajuda";
 import { Monitoria } from "./screens/Monitoria";
 import { Professor } from "./screens/Professor";
+import { Generica } from "./screens/Generica";
 
 export default function App() {
   const [tela, setTela] = useState("inicio");
   const [sel, setSel] = useState(null);
   const [menu, setMenu] = useState(false);
-  const [msg, setMsg] = useState("");
+  const [geral, setGeral] = useState({ nome: "", icone: "doc" });
 
   const lista = MATERIAS.map(avaliar).sort(
     (a, b) => ORDEM[a.nivel] - ORDEM[b.nivel]
   );
   const atual = lista.find((m) => m.nome === sel);
-
-  function aviso(texto) {
-    setMsg(texto);
-    setTimeout(() => setMsg(""), 2300);
-  }
 
   function abrir(destino) {
     setMenu(false);
@@ -35,6 +31,11 @@ export default function App() {
   function abrirMateria(m) {
     setSel(m.nome);
     setTela("detalhe");
+  }
+
+  function abrirGenerica(nome, icone) {
+    setGeral({ nome, icone });
+    abrir("generica");
   }
 
   function voltar() {
@@ -47,10 +48,7 @@ export default function App() {
   function escolher(item) {
     if (item.destino) abrir(item.destino);
     else if (item.nome === "Avisos") abrir("inicio");
-    else {
-      setMenu(false);
-      aviso("Esta tela já existe no app atual");
-    }
+    else abrirGenerica(item.nome, item.icone);
   }
 
   const titulos = {
@@ -62,6 +60,7 @@ export default function App() {
     ajuda: "Ajuda",
     monitoria: "Monitoria",
     professor: "Professor",
+    generica: geral.nome,
   };
 
   return (
@@ -80,7 +79,7 @@ export default function App() {
         <Icon n="search" />
       </header>
 
-      {tela === "inicio" && <Inicio lista={lista} abrir={abrir} aviso={aviso} />}
+      {tela === "inicio" && <Inicio abrir={abrir} geral={abrirGenerica} />}
       {tela === "materias" && <Materias lista={lista} abrirMateria={abrirMateria} />}
       {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} />}
       {tela === "notas" && atual && <Notas m={atual} />}
@@ -88,9 +87,9 @@ export default function App() {
       {tela === "ajuda" && atual && <Ajuda m={atual} abrir={abrir} />}
       {tela === "monitoria" && atual && <Monitoria m={atual} abrir={abrir} />}
       {tela === "professor" && atual && <Professor m={atual} />}
+      {tela === "generica" && <Generica nome={geral.nome} icone={geral.icone} />}
 
       <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />
-      {msg && <div className="sn" role="status">{msg}</div>}
     </div>
   );
 }
