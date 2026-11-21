@@ -15,7 +15,7 @@ export function Monitoria({ m, abrir }) {
 
   return (
     <div className="info">
-      <h2>{m.nome}</h2>
+      <h2>{m.curto}</h2>
       <div className="par"><span>Dia da semana</span><b>{mon.dia}</b></div>
       <div className="par"><span>Horário</span><b>{mon.horario}</b></div>
       <div className="par"><span>Sala</span><b>{mon.sala}</b></div>

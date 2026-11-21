@@ -732,3 +732,11 @@ html, body {
   border-radius: 7px;
   background: #ECEFF3;
 }
+
+.bar .t {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

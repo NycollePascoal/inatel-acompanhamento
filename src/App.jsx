@@ -21,7 +21,7 @@ export default function App() {
   const lista = MATERIAS.map(avaliar).sort(
     (a, b) => ORDEM[a.nivel] - ORDEM[b.nivel]
   );
-  const atual = lista.find((m) => m.nome === sel);
+  const atual = lista.find((m) => m.sigla === sel);
 
   function abrir(destino) {
     setMenu(false);
@@ -29,7 +29,7 @@ export default function App() {
   }
 
   function abrirMateria(m) {
-    setSel(m.nome);
+    setSel(m.sigla);
     setTela("detalhe");
   }
 
@@ -54,7 +54,7 @@ export default function App() {
   const titulos = {
     inicio: "Início",
     materias: "Minhas matérias",
-    detalhe: atual ? atual.nome : "",
+    detalhe: atual ? atual.curto : "",
     notas: "Notas",
     faltas: "Faltas",
     ajuda: "Ajuda",

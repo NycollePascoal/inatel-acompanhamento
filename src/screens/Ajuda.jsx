@@ -3,7 +3,7 @@ import { Icon } from "../components/Icon";
 export function Ajuda({ m, abrir }) {
   return (
     <>
-      <div className="sec">Como podemos ajudar em {m.nome}?</div>
+      <div className="sec">Como podemos ajudar em {m.curto}?</div>
       <button className="opcao" onClick={() => abrir("monitoria")}>
         <Icon n="book" s={32} />
         <span>

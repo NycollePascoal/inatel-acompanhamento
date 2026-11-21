@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { MEDIA } from "../data/materias";
+
+// 0.425 vira "42,5%" e 0.35 vira "35%"
+const pc = (p) => String(Math.round(p * 1000) / 10).replace(".", ",") + "%";
 
 export function Notas({ m }) {
   const [aba, setAba] = useState(0);
@@ -26,7 +28,7 @@ export function Notas({ m }) {
         <div className="nota" key={n.n}>
           <span>{n.n}</span>
           <span>{n.nota ?? "—"}</span>
-          <span>peso {Math.round(n.peso * 100)}%</span>
+          <span>peso {pc(n.peso)}</span>
         </div>
       ))}
 
@@ -35,8 +37,8 @@ export function Notas({ m }) {
         <strong>{c.minima}</strong>
         <span>
           {c.minima > 100
-            ? "Mesmo com 100, não é possível atingir a média " + MEDIA
-            : "nas avaliações que faltam (média " + MEDIA + ")"}
+            ? "Mesmo com 100, não é possível atingir a média " + m.media
+            : "nas avaliações que faltam (média " + m.media + ")"}
         </span>
       </div>
     </>
