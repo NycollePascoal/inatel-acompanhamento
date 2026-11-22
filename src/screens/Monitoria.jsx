@@ -1,7 +1,5 @@
 export function Monitoria({ m, abrir }) {
-  const mon = m.monitoria;
-
-  if (!mon) {
+  if (m.monitoria.length === 0) {
     return (
       <div className="vazio">
         <b>Sem monitoria cadastrada</b>
@@ -14,12 +12,19 @@ export function Monitoria({ m, abrir }) {
   }
 
   return (
-    <div className="info">
-      <h2>{m.curto}</h2>
-      <div className="par"><span>Dia da semana</span><b>{mon.dia}</b></div>
-      <div className="par"><span>Horário</span><b>{mon.horario}</b></div>
-      <div className="par"><span>Sala</span><b>{mon.sala}</b></div>
-      <div className="par"><span>Monitor</span><b>{mon.monitor}</b></div>
-    </div>
+    <>
+      <div className="sec">Monitores de {m.curto}</div>
+      {m.monitoria.map((mon) => (
+        <div className="info" key={mon.monitor}>
+          <h2>{mon.monitor}</h2>
+          {mon.horarios.map((h) => (
+            <div className="par" key={h.dia}>
+              <span>{h.dia}</span>
+              <b>{h.horario} · {h.local}</b>
+            </div>
+          ))}
+        </div>
+      ))}
+    </>
   );
 }

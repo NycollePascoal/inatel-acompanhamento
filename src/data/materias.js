@@ -6,17 +6,25 @@ const nt = (n, nota, peso) => ({ n, nota, peso });
 const relatorios = (qtd, lancadas) =>
   Array.from({ length: qtd }, (_, i) => nt("Relatório " + (i + 1), lancadas[i] ?? null, 1 / qtd));
 
-// Matérias do semestre 2026/2 (notas, faltas, professores e monitores são fictícios)
+// Matérias do semestre 2026/2 (notas e faltas são fictícias)
 // nota: null = ainda não lançada. Os pesos de cada componente somam 1.
+// Contatos dos professores não constam nas ementas, por isso são genéricos.
+const CONTATO = { teams: "Chat do Teams", email: "E-mail institucional",
+  atendimento: "A combinar com o professor", local: "—" };
+
 export const MATERIAS = [
   {
     sigla: "M05",
     nome: "Cálculo Aplicado à Séries e Equações Diferenciais",
     curto: "Cálculo Aplicado",
     media: 60,
-    professor: { nome: "Prof. Carlos Lima", teams: "carlos.lima", email: "carlos.lima@inatel.br",
-      atendimento: "Terça, 10h às 12h", local: "Sala C-205" },
-    monitoria: { dia: "Segunda e quarta", horario: "14h às 16h", sala: "Sala B-102", monitor: "João Pereira" },
+    professor: { nome: "Prof. Felipe Emanoel Chaves", ...CONTATO },
+    monitoria: [
+      { monitor: "Leonardo", horarios: [
+        { dia: "Quarta-feira", horario: "17:30 às 19:00", local: "I-8" },
+        { dia: "Quinta-feira", horario: "17:30 às 19:00", local: "I-9" },
+      ] },
+    ],
     componentes: [
       { tipo: "Teoria", aulas: 80, faltas: 14, justificadas: 1, notas: [
         nt("Prova 1", 40, 0.35), nt("Prova 2", 45, 0.3), nt("Prova 3", null, 0.35),
@@ -28,9 +36,25 @@ export const MATERIAS = [
     nome: "Física Aplicada na Eletricidade e Eletromagnetismo",
     curto: "Física Aplicada",
     media: 60,
-    professor: { nome: "Profa. Marina Alves", teams: "marina.alves", email: "marina.alves@inatel.br",
-      atendimento: "Quinta, 16h às 18h", local: "Sala D-310" },
-    monitoria: { dia: "Terça e quinta", horario: "18h às 20h", sala: "Lab. de Física", monitor: "Beatriz Souza" },
+    professor: { nome: "Prof. Breno Monteiro dos Santos", ...CONTATO },
+    monitoria: [
+      { monitor: "Anna", horarios: [
+        { dia: "Segunda-feira", horario: "17:30 às 19:30", local: "Teams" },
+        { dia: "Quinta-feira", horario: "17:30 às 19:30", local: "Teams" },
+      ] },
+      { monitor: "Beatriz", horarios: [
+        { dia: "Segunda-feira", horario: "17:30 às 19:30", local: "Teams" },
+        { dia: "Terça-feira", horario: "17:30 às 19:30", local: "Teams" },
+      ] },
+      { monitor: "Maria Fernanda", horarios: [
+        { dia: "Segunda-feira", horario: "17:30 às 19:30", local: "I-24" },
+        { dia: "Sexta-feira", horario: "17:30 às 19:30", local: "I-24" },
+      ] },
+      { monitor: "Maria Rita", horarios: [
+        { dia: "Terça-feira", horario: "17:30 às 19:30", local: "Teams" },
+        { dia: "Quarta-feira", horario: "17:30 às 19:30", local: "Teams" },
+      ] },
+    ],
     componentes: [
       { tipo: "Teoria", aulas: 40, faltas: 6, justificadas: 0, notas: [
         nt("Prova 1", 55, 0.425), nt("Seminário (escrito)", 80, 0.075),
@@ -44,9 +68,14 @@ export const MATERIAS = [
     nome: "Eletrônica Digital Aplicada a Contadores e Sequenciadores",
     curto: "Eletrônica Digital",
     media: 60,
-    professor: { nome: "Prof. Rafael Costa", teams: "rafael.costa", email: "rafael.costa@inatel.br",
-      atendimento: "Sexta, 14h às 16h", local: "Sala A-101" },
-    monitoria: { dia: "Quarta", horario: "16h às 18h", sala: "Lab. de Eletrônica", monitor: "Lucas Martins" },
+    professor: { nome: "Prof. Bruno de Oliveira Monteiro", ...CONTATO },
+    monitoria: [
+      { monitor: "Antonio", horarios: [{ dia: "Segunda-feira", horario: "17:30 às 19:30", local: "III-3" }] },
+      { monitor: "Bianca", horarios: [{ dia: "Quarta-feira", horario: "17:30 às 19:30", local: "III-3" }] },
+      { monitor: "João", horarios: [{ dia: "Segunda-feira", horario: "17:30 às 19:30", local: "III-4" }] },
+      { monitor: "José", horarios: [{ dia: "Quarta-feira", horario: "17:30 às 18:30", local: "III-4" }] },
+      { monitor: "Maria", horarios: [{ dia: "Terça-feira", horario: "15:30 às 17:30", local: "III-3" }] },
+    ],
     componentes: [
       { tipo: "Teoria", aulas: 40, faltas: 2, justificadas: 0, notas: [
         nt("Prova 1", 72, 0.5), nt("Prova 2", null, 0.5),
@@ -61,9 +90,11 @@ export const MATERIAS = [
     nome: "Paradigmas da Programação",
     curto: "Paradigmas",
     media: 60,
-    professor: { nome: "Prof. Bruno Teixeira", teams: "bruno.teixeira", email: "bruno.teixeira@inatel.br",
-      atendimento: "Segunda, 16h às 18h", local: "Sala A-204" },
-    monitoria: { dia: "Quinta", horario: "14h às 16h", sala: "Lab. de Computação", monitor: "Camila Rocha" },
+    professor: { nome: "Prof. Ruan Patrick de Souza", ...CONTATO },
+    monitoria: [
+      { monitor: "Felipe", horarios: [{ dia: "Quarta-feira", horario: "17:30 às 19:30", local: "Teams" }] },
+      { monitor: "Pedro", horarios: [{ dia: "Sexta-feira", horario: "17:30 às 19:30", local: "Teams" }] },
+    ],
     componentes: [
       { tipo: "Teoria", aulas: 40, faltas: 9, justificadas: 0, notas: [
         nt("Prova 1", 70, 0.375), nt("Trabalho teórico", 80, 0.125),
@@ -77,9 +108,13 @@ export const MATERIAS = [
     nome: "Interação Homem Máquina",
     curto: "IHM",
     media: 60,
-    professor: { nome: "Prof. André Ribeiro", teams: "andre.ribeiro", email: "andre.ribeiro@inatel.br",
-      atendimento: "Quarta, 10h às 12h", local: "Sala A-110" },
-    monitoria: null,
+    professor: { nome: "Prof. Raphael Cardoso Mota Pereira", ...CONTATO },
+    monitoria: [
+      { monitor: "Juliano", horarios: [
+        { dia: "Segunda-feira", horario: "18:00 às 19:00", local: "Teams" },
+        { dia: "Sexta-feira", horario: "18:00 às 19:00", local: "Teams" },
+      ] },
+    ],
     componentes: [
       { tipo: "Teoria", aulas: 40, faltas: 1, justificadas: 0, notas: [
         nt("Prova 1", 80, 0.35), nt("Exercícios 1", 90, 0.15),
@@ -95,9 +130,8 @@ export const MATERIAS = [
     nome: "Fundamentos de Gestão de Projetos",
     curto: "Gestão de Projetos",
     media: 50,
-    professor: { nome: "Profa. Helena Duarte", teams: "helena.duarte", email: "helena.duarte@inatel.br",
-      atendimento: "Sexta, 10h às 11h", local: "Sala B-301" },
-    monitoria: null,
+    professor: { nome: "Profa. Milena de Oliveira Arantes", ...CONTATO },
+    monitoria: [],
     componentes: [
       { tipo: "Teoria", aulas: 20, faltas: 1, justificadas: 0, notas: [
         nt("Dinâmica 1", 70, 0.25), nt("Dinâmica 2", 65, 0.25),
