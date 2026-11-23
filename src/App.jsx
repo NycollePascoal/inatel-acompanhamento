@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MATERIAS, ORDEM, avaliar } from "./data/materias";
 import { Icon } from "./components/Icon";
 import { Drawer } from "./components/Drawer";
+import { Splash } from "./screens/Splash";
+import { Perfis } from "./screens/Perfis";
+import { Login } from "./screens/Login";
 import { Inicio } from "./screens/Inicio";
 import { Materias } from "./screens/Materias";
 import { Detalhe } from "./screens/Detalhe";
@@ -13,7 +16,7 @@ import { Professor } from "./screens/Professor";
 import { Generica } from "./screens/Generica";
 
 export default function App() {
-  const [tela, setTela] = useState("inicio");
+  const [tela, setTela] = useState("splash");
   const [sel, setSel] = useState(null);
   const [menu, setMenu] = useState(false);
   const [geral, setGeral] = useState({ nome: "", icone: "doc" });
@@ -22,6 +25,14 @@ export default function App() {
     (a, b) => ORDEM[a.nivel] - ORDEM[b.nivel]
   );
   const atual = lista.find((m) => m.sigla === sel);
+  const logado = !["splash", "perfis", "login"].includes(tela);
+
+  // A abertura some sozinha depois de um instante
+  useEffect(() => {
+    if (tela !== "splash") return;
+    const t = setTimeout(() => setTela("perfis"), 1800);
+    return () => clearTimeout(t);
+  }, [tela]);
 
   function abrir(destino) {
     setMenu(false);
@@ -39,7 +50,8 @@ export default function App() {
   }
 
   function voltar() {
-    if (tela === "monitoria" || tela === "professor") abrir("ajuda");
+    if (tela === "login") abrir("perfis");
+    else if (tela === "monitoria" || tela === "professor") abrir("ajuda");
     else if (tela === "ajuda" || tela === "notas" || tela === "faltas") abrir("detalhe");
     else if (tela === "detalhe") abrir("materias");
     else abrir("inicio");
@@ -48,10 +60,15 @@ export default function App() {
   function escolher(item) {
     if (item.destino) abrir(item.destino);
     else if (item.nome === "Avisos") abrir("inicio");
-    else abrirGenerica(item.nome, item.icone);
+    else if (item.nome === "Sair") {
+      setSel(null);
+      abrir("perfis");
+    } else abrirGenerica(item.nome, item.icone);
   }
 
   const titulos = {
+    perfis: "Acadêmico",
+    login: "Acadêmico",
     inicio: "Início",
     materias: "Minhas matérias",
     detalhe: atual ? atual.curto : "",
@@ -65,20 +82,27 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="bar">
-        {tela === "inicio" ? (
-          <button className="ib" aria-label="Abrir menu" onClick={() => setMenu(true)}>
-            <Icon n="menu" />
-          </button>
-        ) : (
-          <button className="ib" aria-label="Voltar" onClick={voltar}>
-            <Icon n="back" />
-          </button>
-        )}
-        <span className="t">{titulos[tela]}</span>
-        <Icon n="search" />
-      </header>
+      {tela !== "splash" && (
+        <header className="bar">
+          {tela === "inicio" ? (
+            <button className="ib" aria-label="Abrir menu" onClick={() => setMenu(true)}>
+              <Icon n="menu" />
+            </button>
+          ) : (
+            tela !== "perfis" && (
+              <button className="ib" aria-label="Voltar" onClick={voltar}>
+                <Icon n="back" />
+              </button>
+            )
+          )}
+          <span className="t">{titulos[tela]}</span>
+          {logado && <Icon n="search" />}
+        </header>
+      )}
 
+      {tela === "splash" && <Splash />}
+      {tela === "perfis" && <Perfis entrar={() => abrir("inicio")} outro={() => abrir("login")} />}
+      {tela === "login" && <Login entrar={() => abrir("inicio")} />}
       {tela === "inicio" && <Inicio abrir={abrir} geral={abrirGenerica} />}
       {tela === "materias" && <Materias lista={lista} abrirMateria={abrirMateria} />}
       {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} />}
@@ -89,7 +113,7 @@ export default function App() {
       {tela === "professor" && atual && <Professor m={atual} />}
       {tela === "generica" && <Generica nome={geral.nome} icone={geral.icone} />}
 
-      <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />
+      {logado && <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />}
     </div>
   );
 }

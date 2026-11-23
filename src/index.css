@@ -740,3 +740,152 @@ html, body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.logo {
+  font-family: "Arial Black", Arial, Helvetica, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.splash {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  gap: 14px;
+  background: #034581;
+  color: #fff;
+  text-align: center;
+}
+
+.splash .logo {
+  font-size: clamp(3.5rem, 18vw, 5rem);
+}
+
+.splash span {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.perfis {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 10vh 24px 24px;
+  text-align: center;
+}
+
+.logo.azul {
+  color: #1F5FA9;
+  font-size: clamp(3.5rem, 18vw, 5rem);
+  margin-bottom: 6vh;
+}
+
+.perfis h1 {
+  margin: 0 0 8px;
+  color: #747474;
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+.perfil-salvo {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #BDBDBD;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.perfil-salvo b {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.perfil-salvo span {
+  color: #747474;
+}
+
+.primario {
+  width: 100%;
+  min-height: 56px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--azul);
+  color: #fff;
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.primario:disabled,
+.perfil-salvo:disabled {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 40px 24px 24px;
+}
+
+.chamada {
+  margin: 0 0 12px;
+  color: #747474;
+  font-size: 1.15rem;
+  text-align: center;
+}
+
+.campo {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid #BDBDBD;
+  border-radius: 8px;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  font-size: 1.05rem;
+  text-align: center;
+  text-align-last: center;
+}
+
+.campo:focus {
+  outline: 2px solid var(--azul);
+}
+
+.campo.inv {
+  border-color: var(--verm);
+}
+
+.erro {
+  margin: -6px 4px 0;
+  color: #B71C1C;
+  font-size: 0.8125rem;
+}
+
+.alerta {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #FDECEA;
+  color: #B71C1C;
+  font-size: 0.9375rem;
+}
+
+.login .primario {
+  margin-top: 8px;
+}
+
+.demo {
+  margin: 8px 0 0;
+  color: #747474;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-align: center;
+}
