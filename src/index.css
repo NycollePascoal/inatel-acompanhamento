@@ -339,15 +339,22 @@ html, body {
 }
 
 .item b {
+  flex: 1;
+  min-width: 0;
   display: block;
   font-weight: 500;
   font-size: 1.05rem;
 }
 
-.item small {
-  display: block;
+.item-sigla {
+  flex: none;
+  padding: 3px 5px;
+  border-radius: 5px;
+  background: #F2F4F7;
   color: var(--cinza);
-  margin-top: 2px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .ov {
@@ -585,9 +592,49 @@ html, body {
   text-align: center;
 }
 
+.minima-titulo {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 20px;
+  padding: 0 24px;
+}
+
+.minima-titulo small {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .minima small {
   display: block;
   color: var(--cinza);
+}
+
+.minima-ajuda-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  transform: translateY(-50%);
+  padding: 0;
+  border: 1px solid var(--cinza);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--cinza);
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.minima-ajuda-toggle:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
 }
 
 .minima strong {
@@ -599,19 +646,115 @@ html, body {
 }
 
 .minima span {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: var(--cinza);
 }
 
 .minima-ajuda {
-  margin: -4px 16px 16px;
-  padding: 10px 12px;
+  margin: 12px 0 0;
+  padding: 8px 10px;
   border-left: 3px solid var(--azul);
   border-radius: 6px;
-  background: #F5F7FA;
+  background: rgba(255, 255, 255, 0.55);
   color: var(--cinza);
   font-size: 0.8125rem;
   line-height: 1.4;
+}
+
+.sim-toggle {
+  display: block;
+  margin: 4px 16px 8px auto;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #E7F0FA;
+  color: var(--azul);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.sim-toggle:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 2px;
+}
+
+.simulador {
+  margin: 0 16px 16px;
+  padding: 14px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: #F5F7FA;
+  scroll-margin-bottom: 16px;
+}
+
+.simulador h2 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.simulador-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 54px;
+  border-top: 1px solid var(--borda);
+  font-size: 0.875rem;
+}
+
+.simulador-linha span {
+  flex: 1;
+  min-width: 0;
+}
+
+.simulador-linha small {
+  display: block;
+  margin-top: 2px;
+  color: var(--cinza);
+  font-size: 0.75rem;
+}
+
+.simulador-linha input {
+  flex: none;
+  width: 80px;
+  min-height: 40px;
+  padding: 0 8px;
+  border: 1px solid #BDBDBD;
+  border-radius: 6px;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  text-align: center;
+}
+
+.simulador-linha input:focus-visible {
+  outline: 2px solid var(--azul);
+  outline-offset: 1px;
+}
+
+.simulador-resultado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--borda);
+  color: var(--cinza);
+  font-size: 0.875rem;
+}
+
+.simulador-resultado strong {
+  color: var(--azul);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.simulador-aviso {
+  margin: 8px 0 0;
+  color: var(--cinza);
+  font-size: 0.75rem;
 }
 
 .faltas {
@@ -1045,6 +1188,10 @@ html, body {
   background: #243649;
 }
 
+:root[data-theme="escuro"] .minima-ajuda {
+  background: #1B2027;
+}
+
 :root[data-theme="escuro"] .di,
 :root[data-theme="escuro"] .di svg,
 :root[data-theme="escuro"] .perfis h1,
@@ -1065,4 +1212,23 @@ html, body {
 
 :root[data-theme="escuro"] .logo.azul {
   color: #79A8D8;
+}
+
+:root[data-theme="escuro"] .item-sigla {
+  background: #252B33;
+}
+
+:root[data-theme="escuro"] .sim-toggle {
+  background: #243649;
+  color: #79A8D8;
+}
+
+:root[data-theme="escuro"] .simulador {
+  background: #243649;
+}
+
+:root[data-theme="escuro"] .simulador-linha input {
+  border-color: var(--borda);
+  background: #1B2027;
+  color: #F4F6F8;
 }

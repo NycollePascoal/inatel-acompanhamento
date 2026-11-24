@@ -41,12 +41,8 @@ export function Materias({ lista, abrirMateria, filtro, setFiltro }) {
       ) : (
         visiveis.map((m) => (
           <button className="item" key={m.sigla} onClick={() => abrirMateria(m)}>
-            <span>
-              <b>{m.nome}</b>
-              <small>
-                {m.sigla} · Faltas {m.faltas}/{m.limite} · Nota mínima: {m.minima}
-              </small>
-            </span>
+            <span className="item-sigla">{m.sigla}</span>
+            <b>{m.nome}</b>
             <Chip nivel={m.nivel} />
           </button>
         ))
