@@ -20,6 +20,7 @@ export default function App() {
   const [sel, setSel] = useState(null);
   const [menu, setMenu] = useState(false);
   const [geral, setGeral] = useState({ nome: "", icone: "doc" });
+  const [filtro, setFiltro] = useState("todas");
 
   const lista = MATERIAS.map(avaliar).sort(
     (a, b) => ORDEM[a.nivel] - ORDEM[b.nivel]
@@ -104,7 +105,9 @@ export default function App() {
       {tela === "perfis" && <Perfis entrar={() => abrir("inicio")} outro={() => abrir("login")} />}
       {tela === "login" && <Login entrar={() => abrir("inicio")} />}
       {tela === "inicio" && <Inicio abrir={abrir} geral={abrirGenerica} />}
-      {tela === "materias" && <Materias lista={lista} abrirMateria={abrirMateria} />}
+      {tela === "materias" && (
+        <Materias lista={lista} abrirMateria={abrirMateria} filtro={filtro} setFiltro={setFiltro} />
+      )}
       {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} />}
       {tela === "notas" && atual && <Notas m={atual} />}
       {tela === "faltas" && atual && <Faltas m={atual} />}
