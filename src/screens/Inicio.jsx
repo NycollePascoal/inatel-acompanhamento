@@ -38,7 +38,9 @@ export function Inicio({ abrir, geral }) {
       <div className="sec topo">Avisos</div>
       {AVISOS.slice(0, 2).map((a) => (
         <div className="aviso" key={a.titulo}>
-          <div className="av">{a.codigo}</div>
+          <div className={"av" + (a.origem === "Acompanhamento Acadêmico" ? " academico" : "")}>
+            {a.codigo}
+          </div>
           <div className="c">
             <div className="l">
               <span className="aviso-origem">{a.origem}</span>

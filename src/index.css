@@ -170,19 +170,29 @@ html, body {
 }
 
 .atalho {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 20px;
   min-height: 56px;
   padding: 0 16px;
   border: 0;
-  border-bottom: 1px solid var(--borda);
   background: #fff;
   font: inherit;
   font-size: 1rem;
   color: #222;
   text-align: left;
   cursor: pointer;
+}
+
+.atalho:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 16px;
+  bottom: 0;
+  left: 60px;
+  height: 1px;
+  background: var(--borda);
 }
 
 .atalho:active {
@@ -225,21 +235,26 @@ html, body {
 
 .aviso {
   display: flex;
-  gap: 14px;
-  padding: 14px 16px;
+  gap: 12px;
+  padding: 12px 16px;
   border-bottom: 1px solid var(--borda);
 }
 
 .av {
   flex: none;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: var(--laranja);
+  background: #6B7280;
   color: #fff;
   display: grid;
   place-items: center;
-  font-size: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.av.academico {
+  background: var(--laranja);
 }
 
 .aviso .c {
@@ -255,6 +270,7 @@ html, body {
 
 .aviso-origem {
   font-weight: 700;
+  font-size: 0.875rem;
 }
 
 .ex {
@@ -264,12 +280,17 @@ html, body {
 }
 
 .aviso .d {
-  color: #878787;
-  font-size: 0.8125rem;
+  color: var(--cinza);
+  font-size: 0.75rem;
+  white-space: nowrap;
 }
 
 .aviso .s {
   display: block;
+  margin-top: 4px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -277,8 +298,10 @@ html, body {
 
 .aviso .p {
   display: block;
-  color: #878787;
+  color: var(--cinza);
   font-size: 0.875rem;
+  line-height: 1.35;
+  margin-top: 3px;
 }
 
 .lermais {
@@ -580,6 +603,17 @@ html, body {
   color: var(--cinza);
 }
 
+.minima-ajuda {
+  margin: -4px 16px 16px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--azul);
+  border-radius: 6px;
+  background: #F5F7FA;
+  color: var(--cinza);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
 .faltas {
   padding: 4px 16px 8px;
 }
@@ -796,8 +830,10 @@ html, body {
 .perfis {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 16px;
-  padding: 10vh 24px 24px;
+  min-height: calc(100dvh - 56px);
+  padding: 24px;
   text-align: center;
 }
 
@@ -918,7 +954,7 @@ html, body {
 .filtros {
   display: flex;
   gap: 8px;
-  padding: 12px 16px 4px;
+  padding: 12px 16px 12px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -1003,6 +1039,7 @@ html, body {
 :root[data-theme="escuro"] .atalho.destaque,
 :root[data-theme="escuro"] .di.novo,
 :root[data-theme="escuro"] .minima,
+:root[data-theme="escuro"] .minima-ajuda,
 :root[data-theme="escuro"] .info,
 :root[data-theme="escuro"] .gen .ico {
   background: #243649;

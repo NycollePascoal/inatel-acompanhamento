@@ -6,6 +6,7 @@ const pc = (p) => String(Math.round(p * 1000) / 10).replace(".", ",") + "%";
 export function Notas({ m }) {
   const [aba, setAba] = useState(0);
   const c = m.componentes[aba];
+  const pendentes = c.notas.filter((nota) => nota.nota === null).length;
 
   return (
     <>
@@ -35,12 +36,18 @@ export function Notas({ m }) {
       <div className="minima">
         <small>Nota mínima necessária</small>
         <strong>{c.minima}</strong>
-        <span>
-          {c.minima > 100
-            ? "Mesmo com 100, não é possível atingir a média " + m.media
-            : "nas avaliações que faltam (média " + m.media + ")"}
-        </span>
+        <span>Média da matéria: {m.media}</span>
       </div>
+
+      {c.minima > 100 ? (
+        <p className="minima-ajuda">
+          Mesmo com 100 em todas as avaliações restantes, a média da matéria não chega a {m.media}.
+        </p>
+      ) : pendentes > 1 ? (
+        <p className="minima-ajuda">
+          Média ponderada das pendentes, não a nota de cada uma.
+        </p>
+      ) : null}
     </>
   );
 }

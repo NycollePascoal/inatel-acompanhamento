@@ -26,7 +26,7 @@ export const MATERIAS = [
       ] },
     ],
     componentes: [
-      { tipo: "Teoria", aulas: 80, faltas: 14, justificadas: 1, notas: [
+      { tipo: "Teoria", aulas: 80, faltas: 14, justificadas: 2, notas: [
         nt("Prova 1", 40, 0.35), nt("Prova 2", 45, 0.3), nt("Prova 3", null, 0.35),
       ] },
     ],
@@ -60,7 +60,7 @@ export const MATERIAS = [
         nt("Prova 1", 55, 0.425), nt("Seminário (escrito)", 80, 0.075),
         nt("Prova 2", null, 0.425), nt("Seminário (apresentação)", null, 0.075),
       ] },
-      { tipo: "Lab", aulas: 20, faltas: 3, justificadas: 1, notas: relatorios(7, [70, 65, 50, 60]) },
+      { tipo: "Lab", aulas: 20, faltas: 2, justificadas: 0, notas: relatorios(7, [70, 65, 50, 60]) },
     ],
   },
   {
@@ -80,7 +80,7 @@ export const MATERIAS = [
       { tipo: "Teoria", aulas: 40, faltas: 2, justificadas: 0, notas: [
         nt("Prova 1", 72, 0.5), nt("Prova 2", null, 0.5),
       ] },
-      { tipo: "Lab", aulas: 20, faltas: 1, justificadas: 0, notas: [
+      { tipo: "Lab", aulas: 20, faltas: 2, justificadas: 0, notas: [
         nt("Teste 1", 45, 0.4), nt("Projeto", null, 0.5), nt("Média dos relatórios", 80, 0.1),
       ] },
     ],
@@ -96,7 +96,7 @@ export const MATERIAS = [
       { monitor: "Pedro", horarios: [{ dia: "Sexta-feira", horario: "17:30 às 19:30", local: "Teams" }] },
     ],
     componentes: [
-      { tipo: "Teoria", aulas: 40, faltas: 9, justificadas: 0, notas: [
+      { tipo: "Teoria", aulas: 40, faltas: 8, justificadas: 0, notas: [
         nt("Prova 1", 70, 0.375), nt("Trabalho teórico", 80, 0.125),
         nt("Prova 2", null, 0.375), nt("Entrega de exercícios", null, 0.125),
       ] },
@@ -116,7 +116,7 @@ export const MATERIAS = [
       ] },
     ],
     componentes: [
-      { tipo: "Teoria", aulas: 40, faltas: 1, justificadas: 0, notas: [
+      { tipo: "Teoria", aulas: 40, faltas: 2, justificadas: 0, notas: [
         nt("Prova 1", 80, 0.35), nt("Exercícios 1", 90, 0.15),
         nt("Prova 2", null, 0.35), nt("Exercícios 2", null, 0.15),
       ] },
@@ -133,7 +133,7 @@ export const MATERIAS = [
     professor: { nome: "Profa. Milena de Oliveira Arantes", ...CONTATO },
     monitoria: [],
     componentes: [
-      { tipo: "Teoria", aulas: 20, faltas: 1, justificadas: 0, notas: [
+      { tipo: "Teoria", aulas: 20, faltas: 2, justificadas: 0, notas: [
         nt("Dinâmica 1", 70, 0.25), nt("Dinâmica 2", 65, 0.25),
         nt("Dinâmica 3", null, 0.25), nt("Dinâmica 4", null, 0.25),
       ] },

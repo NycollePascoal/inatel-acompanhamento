@@ -33,10 +33,6 @@ export function Materias({ lista, abrirMateria, filtro, setFiltro }) {
         ))}
       </div>
 
-      <div className="sec" aria-live="polite">
-        Mostrando {visiveis.length} de {lista.length} matérias
-      </div>
-
       {visiveis.length === 0 ? (
         <div className="vazio">
           <b>Nada por aqui</b>
@@ -48,7 +44,7 @@ export function Materias({ lista, abrirMateria, filtro, setFiltro }) {
             <span>
               <b>{m.nome}</b>
               <small>
-                {m.sigla} · Faltas {m.faltas} de {m.limite} · nota mínima {m.minima}
+                {m.sigla} · Faltas {m.faltas}/{m.limite} · Nota mínima: {m.minima}
               </small>
             </span>
             <Chip nivel={m.nivel} />

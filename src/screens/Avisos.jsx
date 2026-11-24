@@ -5,7 +5,9 @@ export function Avisos() {
     <main>
       {AVISOS.map((aviso) => (
         <article className="aviso" key={aviso.titulo}>
-          <div className="av">{aviso.codigo}</div>
+          <div className={"av" + (aviso.origem === "Acompanhamento Acadêmico" ? " academico" : "")}>
+            {aviso.codigo}
+          </div>
           <div className="c">
             <div className="l">
               <span className="aviso-origem">{aviso.origem}</span>
