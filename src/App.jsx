@@ -33,6 +33,7 @@ export default function App() {
   );
   const atual = lista.find((m) => m.sigla === sel);
   const logado = !["splash", "perfis", "login"].includes(tela);
+  const telasComMenu = ["inicio", "materias", "avisos", "generica"].includes(tela);
 
   // A abertura some sozinha depois de um instante
   useEffect(() => {
@@ -70,7 +71,6 @@ export default function App() {
     else if (tela === "monitoria" || tela === "professor") abrir("ajuda");
     else if (tela === "ajuda" || tela === "notas" || tela === "faltas") abrir("detalhe");
     else if (tela === "detalhe") abrir("materias");
-    else if (tela === "avisos") abrir("inicio");
     else abrir("inicio");
   }
 
@@ -102,7 +102,7 @@ export default function App() {
     <div className="app">
       {tela !== "splash" && (
         <header className="bar">
-          {tela === "inicio" ? (
+          {telasComMenu ? (
             <button className="ib" aria-label="Abrir menu" onClick={() => setMenu(true)}>
               <Icon n="menu" />
             </button>

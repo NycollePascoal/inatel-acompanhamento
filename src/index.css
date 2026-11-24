@@ -453,11 +453,6 @@ html, body {
   background: #EEEEEE;
 }
 
-.di.novo {
-  background: #E7F0FA;
-  font-weight: 500;
-}
-
 .pt {
   flex: none;
   width: 8px;
@@ -1191,7 +1186,6 @@ html, body {
 }
 
 :root[data-theme="escuro"] .atalho.destaque,
-:root[data-theme="escuro"] .di.novo,
 :root[data-theme="escuro"] .minima,
 :root[data-theme="escuro"] .minima-ajuda,
 :root[data-theme="escuro"] .info,

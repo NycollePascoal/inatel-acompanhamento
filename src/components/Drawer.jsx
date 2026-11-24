@@ -1,6 +1,7 @@
 import { Icon } from "./Icon";
 
 const item = (nome, icone, extra) => ({ nome, icone, ...extra });
+const itemInicio = item("Início", "home", { destino: "inicio" });
 
 const MENU = [
   {
@@ -70,6 +71,13 @@ export function Drawer({ aberto, fechar, escolher }) {
           <b>Ana Souza</b>
           <span>ana.souza@ges.inatel.br</span>
         </div>
+
+        <div className="ds">Principal</div>
+        <button className="di" onClick={() => escolher(itemInicio)}>
+          <Icon n="home" />
+          <span>Início</span>
+        </button>
+        <div className="hr" />
 
         {MENU.map((sec, i) => (
           <div key={sec.titulo}>
