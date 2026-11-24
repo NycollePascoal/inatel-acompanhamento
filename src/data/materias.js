@@ -173,11 +173,11 @@ export function avaliar(m) {
     const nome = comLab ? c.tipo + ": " : "";
     if (c.pct >= 0.6) {
       if (!motivos.includes("FALTA")) motivos.push("FALTA");
-      detalhes.push(`${nome}Você usou ${Math.round(c.pct * 100)}% das faltas permitidas (${c.faltas} de ${c.limite}).`);
+      detalhes.push(`${nome}Você usou ${Math.round(c.pct * 100)}% das faltas permitidas.`);
     }
     if (c.minima > 65) {
       if (!motivos.includes("NOTA")) motivos.push("NOTA");
-      detalhes.push(`${nome}Para passar, você precisa de ${c.minima} nas próximas avaliações.`);
+      detalhes.push(`${nome}Para passar, a média ponderada das avaliações restantes precisa ser ${c.minima}.`);
     }
   });
   if (detalhes.length === 0) detalhes.push("Nenhum risco por enquanto. Continue assim!");

@@ -36,7 +36,7 @@ export function Notas({ m }) {
     if (simulacaoAberta) {
       simuladorRef.current?.scrollIntoView({ block: "end", behavior: "smooth" });
     }
-  }, [simulacaoAberta]);
+  }, [simulacaoAberta, ajudaMinimaAberta]);
 
   return (
     <>
@@ -115,6 +115,9 @@ export function Notas({ m }) {
             hidden={!simulacaoAberta}
           >
             <h2 id="simulador-titulo">Notas para simular</h2>
+            <p className="simulador-explicacao">
+              Considera notas já lançadas e os pesos.
+            </p>
             {pendentes.map((nota) => (
               <label className="simulador-linha" key={nota.n}>
                 <span>
