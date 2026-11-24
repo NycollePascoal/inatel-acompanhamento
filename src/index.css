@@ -921,3 +921,18 @@ html, body {
   color: #fff;
   font-weight: 500;
 }
+
+.logo-img {
+  display: block;
+  width: clamp(180px, 55vw, 260px);
+  height: auto;
+  margin: 0 auto;
+}
+
+.splash .logo-img {
+  filter: brightness(0) invert(1);
+}
+
+.perfis .logo-img {
+  margin-bottom: 6vh;
+}

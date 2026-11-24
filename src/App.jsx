@@ -97,7 +97,6 @@ export default function App() {
             )
           )}
           <span className="t">{titulos[tela]}</span>
-          {logado && <Icon n="search" />}
         </header>
       )}
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "../assets/inatel-logo.png";
 
 export function Perfis({ entrar, outro }) {
   const [entrando, setEntrando] = useState(false);
@@ -10,7 +11,7 @@ export function Perfis({ entrar, outro }) {
 
   return (
     <div className="perfis">
-      <div className="logo azul">Inatel</div>
+      <img className="logo-img" src={logo} alt="Inatel" />
       <h1>Perfis Salvos</h1>
       <button className="perfil-salvo" onClick={escolher} disabled={entrando}>
         <b>Ana Souza</b>

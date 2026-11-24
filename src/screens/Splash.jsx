@@ -1,7 +1,9 @@
+import logo from "../assets/inatel-logo.png";
+
 export function Splash() {
   return (
     <div className="splash">
-      <div className="logo">Inatel</div>
+      <img className="logo-img" src={logo} alt="Inatel" />
       <span>Acadêmico</span>
     </div>
   );
