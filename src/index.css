@@ -90,6 +90,15 @@ html, body {
 
 .bar .t {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ib.tema {
+  flex: none;
+  margin: -8px -8px -8px 0;
 }
 
 .perfil {
@@ -244,6 +253,10 @@ html, body {
   gap: 8px;
 }
 
+.aviso-origem {
+  font-weight: 700;
+}
+
 .ex {
   color: var(--verm);
   font-weight: 700;
@@ -266,6 +279,18 @@ html, body {
   display: block;
   color: #878787;
   font-size: 0.875rem;
+}
+
+.lermais {
+  display: block;
+  margin: 8px 16px 16px auto;
+  border: 0;
+  background: none;
+  color: var(--azul);
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .item {
@@ -935,4 +960,72 @@ html, body {
 
 .perfis .logo-img {
   margin-bottom: 6vh;
+}
+
+/* Tema escuro: mantém o layout e as cores principais intactos. */
+:root[data-theme="escuro"] {
+  --borda: #3A424C;
+  --cinza: #B0BAC5;
+  color-scheme: dark;
+}
+
+:root[data-theme="escuro"] body {
+  background: #11151A;
+  color: #F4F6F8;
+}
+
+:root[data-theme="escuro"] .app {
+  background: #1B2027;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-theme="escuro"] .atalho,
+:root[data-theme="escuro"] .item,
+:root[data-theme="escuro"] .linha,
+:root[data-theme="escuro"] .opcao,
+:root[data-theme="escuro"] .filtro,
+:root[data-theme="escuro"] .perfil-salvo,
+:root[data-theme="escuro"] .campo,
+:root[data-theme="escuro"] .aba,
+:root[data-theme="escuro"] .dr {
+  background: #1B2027;
+  color: #F4F6F8;
+}
+
+:root[data-theme="escuro"] .atalho:active,
+:root[data-theme="escuro"] .item:active,
+:root[data-theme="escuro"] .linha:active,
+:root[data-theme="escuro"] .opcao:active,
+:root[data-theme="escuro"] .di:active {
+  background: #272D35;
+}
+
+:root[data-theme="escuro"] .atalho.destaque,
+:root[data-theme="escuro"] .di.novo,
+:root[data-theme="escuro"] .minima,
+:root[data-theme="escuro"] .info,
+:root[data-theme="escuro"] .gen .ico {
+  background: #243649;
+}
+
+:root[data-theme="escuro"] .di,
+:root[data-theme="escuro"] .di svg,
+:root[data-theme="escuro"] .perfis h1,
+:root[data-theme="escuro"] .perfil-salvo span,
+:root[data-theme="escuro"] .chamada,
+:root[data-theme="escuro"] .demo,
+:root[data-theme="escuro"] .vazio b,
+:root[data-theme="escuro"] .gen b {
+  color: #F4F6F8;
+}
+
+:root[data-theme="escuro"] .barra,
+:root[data-theme="escuro"] .sk,
+:root[data-theme="escuro"] .perfil-salvo,
+:root[data-theme="escuro"] .campo {
+  background-color: #252B33;
+}
+
+:root[data-theme="escuro"] .logo.azul {
+  color: #79A8D8;
 }

@@ -1,14 +1,10 @@
 import { Icon } from "../components/Icon";
+import { AVISOS } from "../data/avisos";
 
 const ATALHOS = [
   { nome: "Notas", icone: "bar" },
   { nome: "Frequência", icone: "cal" },
   { nome: "Acompanhamento Acadêmico", icone: "check", destino: "materias" },
-];
-
-const AVISOS = [
-  { titulo: "Pendências comuns do final de semestre", data: "30/06/2026", para: "Prezado(a) Aluno(a)" },
-  { titulo: "TRANSFERÊNCIA INTERNA DE CURSO/", data: "17/03/2025", para: "Prezados(as) alunos(as)," },
 ];
 
 export function Inicio({ abrir, geral }) {
@@ -40,14 +36,12 @@ export function Inicio({ abrir, geral }) {
       </div>
 
       <div className="sec topo">Avisos</div>
-      {AVISOS.map((a) => (
+      {AVISOS.slice(0, 2).map((a) => (
         <div className="aviso" key={a.titulo}>
-          <div className="av">C</div>
+          <div className="av">{a.codigo}</div>
           <div className="c">
             <div className="l">
-              <span>
-                <span className="ex">!</span>CRA
-              </span>
+              <span className="aviso-origem">{a.origem}</span>
               <span className="d">{a.data}</span>
             </div>
             <span className="s">{a.titulo}</span>
@@ -55,6 +49,9 @@ export function Inicio({ abrir, geral }) {
           </div>
         </div>
       ))}
+      <button className="lermais" type="button" onClick={() => abrir("avisos")}>
+        Ler mais...
+      </button>
     </>
   );
 }

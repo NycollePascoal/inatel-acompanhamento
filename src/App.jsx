@@ -14,6 +14,7 @@ import { Ajuda } from "./screens/Ajuda";
 import { Monitoria } from "./screens/Monitoria";
 import { Professor } from "./screens/Professor";
 import { Generica } from "./screens/Generica";
+import { Avisos } from "./screens/Avisos";
 
 export default function App() {
   const [tela, setTela] = useState("splash");
@@ -21,6 +22,11 @@ export default function App() {
   const [menu, setMenu] = useState(false);
   const [geral, setGeral] = useState({ nome: "", icone: "doc" });
   const [filtro, setFiltro] = useState("todas");
+  const [tema, setTema] = useState(() => {
+    const salvo = localStorage.getItem("tema");
+    if (salvo === "claro" || salvo === "escuro") return salvo;
+    return "claro";
+  });
 
   const lista = MATERIAS.map(avaliar).sort(
     (a, b) => ORDEM[a.nivel] - ORDEM[b.nivel]
@@ -34,6 +40,15 @@ export default function App() {
     const t = setTimeout(() => setTela("perfis"), 1800);
     return () => clearTimeout(t);
   }, [tela]);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = tema;
+    localStorage.setItem("tema", tema);
+  }, [tema]);
+
+  function alternarTema() {
+    setTema((atual) => (atual === "escuro" ? "claro" : "escuro"));
+  }
 
   function abrir(destino) {
     setMenu(false);
@@ -55,12 +70,13 @@ export default function App() {
     else if (tela === "monitoria" || tela === "professor") abrir("ajuda");
     else if (tela === "ajuda" || tela === "notas" || tela === "faltas") abrir("detalhe");
     else if (tela === "detalhe") abrir("materias");
+    else if (tela === "avisos") abrir("inicio");
     else abrir("inicio");
   }
 
   function escolher(item) {
     if (item.destino) abrir(item.destino);
-    else if (item.nome === "Avisos") abrir("inicio");
+    else if (item.nome === "Avisos") abrir("avisos");
     else if (item.nome === "Sair") {
       setSel(null);
       abrir("perfis");
@@ -78,6 +94,7 @@ export default function App() {
     ajuda: "Ajuda",
     monitoria: "Monitoria",
     professor: "Professor",
+    avisos: "Avisos",
     generica: geral.nome,
   };
 
@@ -97,6 +114,16 @@ export default function App() {
             )
           )}
           <span className="t">{titulos[tela]}</span>
+          {tela !== "splash" && (
+            <button
+              className="ib tema"
+              aria-label={tema === "escuro" ? "Usar tema claro" : "Usar tema escuro"}
+              title={tema === "escuro" ? "Tema claro" : "Tema escuro"}
+              onClick={alternarTema}
+            >
+              <Icon n={tema === "escuro" ? "sun" : "moon"} />
+            </button>
+          )}
         </header>
       )}
 
@@ -113,6 +140,7 @@ export default function App() {
       {tela === "ajuda" && atual && <Ajuda m={atual} abrir={abrir} />}
       {tela === "monitoria" && atual && <Monitoria m={atual} abrir={abrir} />}
       {tela === "professor" && atual && <Professor m={atual} />}
+      {tela === "avisos" && <Avisos />}
       {tela === "generica" && <Generica nome={geral.nome} icone={geral.icone} />}
 
       {logado && <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />}
