@@ -99,7 +99,7 @@ export default function App() {
   };
 
   return (
-    <div className="app">
+    <div className={"app" + (tela === "notas" ? " tela-notas" : "")}>
       {tela !== "splash" && (
         <header className="bar">
           {telasComMenu ? (

@@ -28,6 +28,10 @@ html, body {
   box-shadow: 0 0 24px rgba(0, 0, 0, 0.25);
 }
 
+.app.tela-notas {
+  padding-bottom: 8px;
+}
+
 .bar {
   display: flex;
   align-items: center;
@@ -680,7 +684,7 @@ html, body {
 }
 
 .simulador {
-  margin: 0 16px 16px;
+  margin: 0 16px 8px;
   padding: 14px;
   border: 1px solid var(--borda);
   border-radius: 10px;
