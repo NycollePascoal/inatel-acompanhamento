@@ -113,7 +113,10 @@ export default function App() {
               </button>
             )
           )}
-          <span className="t">{titulos[tela]}</span>
+          <span className="t">
+            {titulos[tela]}
+            {atual && ["notas", "faltas"].includes(tela) ? ` · ${atual.curto}` : ""}
+          </span>
           {tela !== "splash" && (
             <button
               className="ib tema"
