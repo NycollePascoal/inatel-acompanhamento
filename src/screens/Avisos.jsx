@@ -2,7 +2,7 @@ import { AVISOS } from "../data/avisos";
 
 export function Avisos() {
   return (
-    <main>
+    <div>
       {AVISOS.map((aviso) => (
         <article className="aviso" key={aviso.titulo}>
           <div className={"av" + (aviso.origem === "Acompanhamento Acadêmico" ? " academico" : "")}>
@@ -18,6 +18,6 @@ export function Avisos() {
           </div>
         </article>
       ))}
-    </main>
+    </div>
   );
 }

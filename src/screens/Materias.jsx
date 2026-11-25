@@ -39,13 +39,15 @@ export function Materias({ lista, abrirMateria, filtro, setFiltro }) {
           <p>{VAZIO[filtro]}</p>
         </div>
       ) : (
-        visiveis.map((m) => (
-          <button className="item" key={m.sigla} onClick={() => abrirMateria(m)}>
-            <span className="item-sigla">{m.sigla}</span>
-            <b>{m.nome}</b>
-            <Chip nivel={m.nivel} />
-          </button>
-        ))
+        <div className="materias-grid">
+          {visiveis.map((m) => (
+            <button className="item" key={m.sigla} onClick={() => abrirMateria(m)}>
+              <span className="item-sigla">{m.sigla}</span>
+              <b>{m.nome}</b>
+              <Chip nivel={m.nivel} />
+            </button>
+          ))}
+        </div>
       )}
     </>
   );

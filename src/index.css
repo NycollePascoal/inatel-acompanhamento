@@ -21,6 +21,7 @@ html, body {
 }
 
 .app {
+  display: flow-root;
   max-width: 430px;
   min-height: 100dvh;
   margin: 0 auto;
@@ -1255,4 +1256,88 @@ html, body {
   border-color: var(--borda);
   background: #1B2027;
   color: #F4F6F8;
+}
+
+@media (min-width: 768px) {
+  .app {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    box-shadow: none;
+  }
+
+  :root[data-theme="escuro"] .app {
+    box-shadow: none;
+  }
+
+  .bar {
+    height: 64px;
+    padding: 0 clamp(24px, 5vw, 72px);
+  }
+
+  .conteudo {
+    width: min(100%, 1280px);
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+  }
+
+  .conteudo-acesso {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  .inicio {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: 24px;
+  }
+
+  .inicio-coluna {
+    overflow: hidden;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: #fff;
+  }
+
+  :root[data-theme="escuro"] .inicio-coluna {
+    background: #1B2027;
+  }
+
+  .dr {
+    left: 0;
+    width: min(320px, 28vw);
+  }
+
+  .filtros {
+    flex-wrap: wrap;
+    padding: 12px 0 24px;
+    overflow: visible;
+  }
+
+  .materias-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .item {
+    min-height: 84px;
+    padding: 16px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+  }
+
+  .perfis {
+    width: min(480px, calc(100% - 48px));
+    margin: 0 auto;
+    min-height: calc(100dvh - 64px);
+  }
+
+  .login {
+    width: min(520px, calc(100% - 48px));
+    margin: 0 auto;
+    padding: 48px 0;
+  }
 }

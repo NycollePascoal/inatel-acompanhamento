@@ -174,21 +174,23 @@ export default function App() {
         </header>
       )}
 
-      {tela === "splash" && <Splash />}
-      {tela === "perfis" && <Perfis entrar={() => abrir("inicio")} outro={() => abrir("login")} />}
-      {tela === "login" && <Login entrar={() => abrir("inicio")} />}
-      {tela === "inicio" && <Inicio abrir={abrir} geral={abrirGenerica} />}
-      {tela === "materias" && (
-        <Materias lista={lista} abrirMateria={abrirMateria} filtro={filtro} setFiltro={setFiltro} />
-      )}
-      {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} />}
-      {tela === "notas" && atual && <Notas m={atual} />}
-      {tela === "faltas" && atual && <Faltas m={atual} />}
-      {tela === "ajuda" && atual && <Ajuda m={atual} abrir={abrir} />}
-      {tela === "monitoria" && atual && <Monitoria m={atual} abrir={abrir} />}
-      {tela === "professor" && atual && <Professor m={atual} />}
-      {tela === "avisos" && <Avisos />}
-      {tela === "generica" && <Generica nome={geral.nome} icone={geral.icone} />}
+      <main className={"conteudo" + (logado ? "" : " conteudo-acesso")}>
+        {tela === "splash" && <Splash />}
+        {tela === "perfis" && <Perfis entrar={() => abrir("inicio")} outro={() => abrir("login")} />}
+        {tela === "login" && <Login entrar={() => abrir("inicio")} />}
+        {tela === "inicio" && <Inicio abrir={abrir} geral={abrirGenerica} />}
+        {tela === "materias" && (
+          <Materias lista={lista} abrirMateria={abrirMateria} filtro={filtro} setFiltro={setFiltro} />
+        )}
+        {tela === "detalhe" && atual && <Detalhe m={atual} abrir={abrir} />}
+        {tela === "notas" && atual && <Notas m={atual} />}
+        {tela === "faltas" && atual && <Faltas m={atual} />}
+        {tela === "ajuda" && atual && <Ajuda m={atual} abrir={abrir} />}
+        {tela === "monitoria" && atual && <Monitoria m={atual} abrir={abrir} />}
+        {tela === "professor" && atual && <Professor m={atual} />}
+        {tela === "avisos" && <Avisos />}
+        {tela === "generica" && <Generica nome={geral.nome} icone={geral.icone} />}
+      </main>
 
       {logado && <Drawer aberto={menu} fechar={() => setMenu(false)} escolher={escolher} />}
     </div>
