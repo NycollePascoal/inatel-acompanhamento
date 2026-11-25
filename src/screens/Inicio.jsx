@@ -4,7 +4,7 @@ import { AVISOS } from "../data/avisos";
 const ATALHOS = [
   { nome: "Notas", icone: "bar" },
   { nome: "Frequência", icone: "cal" },
-  { nome: "Acompanhamento Acadêmico", icone: "check", destino: "materias" },
+  { nome: "Acompanhamento Acadêmico", icone: "check", destino: "materias", novo: true },
 ];
 
 export function Inicio({ abrir, geral }) {
@@ -36,6 +36,7 @@ export function Inicio({ abrir, geral }) {
             >
               <Icon n={a.icone} />
               <span>{a.nome}</span>
+              {a.novo && <i className="pt" aria-hidden="true" />}
             </button>
           ))}
         </div>
