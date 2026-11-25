@@ -21,6 +21,10 @@ export function Inicio({ abrir, geral }) {
         </div>
       </div>
 
+      <p className="prototipo">
+        Protótipo demonstrativo: dados fictícios, sem integração ao sistema do Inatel.
+      </p>
+
       <div className="sec">Atalhos</div>
       <div className="atalhos">
         {ATALHOS.map((a) => (

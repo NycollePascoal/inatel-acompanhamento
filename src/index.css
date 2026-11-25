@@ -167,6 +167,16 @@ html, body {
   overflow-wrap: anywhere;
 }
 
+.prototipo {
+  margin: 8px 16px 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #E7F0FA;
+  color: var(--cinza);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
 .atalhos {
   display: flex;
   flex-direction: column;
@@ -1233,6 +1243,10 @@ html, body {
 }
 
 :root[data-theme="escuro"] .simulador {
+  background: #243649;
+}
+
+:root[data-theme="escuro"] .prototipo {
   background: #243649;
 }
 
