@@ -35,10 +35,43 @@ export default function App() {
   const logado = !["splash", "perfis", "login"].includes(tela);
   const telasComMenu = ["inicio", "materias", "avisos", "generica"].includes(tela);
 
+  useEffect(() => {
+    window.history.replaceState(
+      {
+        inatelNavigation: true,
+        tela: "splash",
+        sel: null,
+        geral: { nome: "", icone: "doc" },
+      },
+      "",
+      window.location.href
+    );
+
+    function restaurarTela(evento) {
+      const estado = evento.state;
+      if (!estado?.inatelNavigation) return;
+
+      setMenu(false);
+      setTela(estado.tela);
+      setSel(estado.sel ?? null);
+      if (estado.geral) setGeral(estado.geral);
+    }
+
+    window.addEventListener("popstate", restaurarTela);
+    return () => window.removeEventListener("popstate", restaurarTela);
+  }, []);
+
   // A abertura some sozinha depois de um instante
   useEffect(() => {
     if (tela !== "splash") return;
-    const t = setTimeout(() => setTela("perfis"), 1800);
+    const t = setTimeout(() => {
+      window.history.replaceState(
+        { ...window.history.state, tela: "perfis", sel: null },
+        "",
+        window.location.href
+      );
+      setTela("perfis");
+    }, 1800);
     return () => clearTimeout(t);
   }, [tela]);
 
@@ -51,35 +84,46 @@ export default function App() {
     setTema((atual) => (atual === "escuro" ? "claro" : "escuro"));
   }
 
-  function abrir(destino) {
+  function navegar(destino, materia = sel, geralAtual = geral, substituir = false) {
+    const estado = { inatelNavigation: true, tela: destino, sel: materia, geral: geralAtual };
+    const metodo = substituir ? "replaceState" : "pushState";
+    window.history[metodo](estado, "", window.location.href);
     setMenu(false);
+    setSel(materia);
+    setGeral(geralAtual);
     setTela(destino);
   }
 
+  function abrir(destino) {
+    navegar(destino);
+  }
+
   function abrirMateria(m) {
-    setSel(m.sigla);
-    setTela("detalhe");
+    navegar("detalhe", m.sigla);
   }
 
   function abrirGenerica(nome, icone) {
-    setGeral({ nome, icone });
-    abrir("generica");
+    navegar("generica", sel, { nome, icone });
   }
 
   function voltar() {
-    if (tela === "login") abrir("perfis");
-    else if (tela === "monitoria" || tela === "professor") abrir("ajuda");
-    else if (tela === "ajuda" || tela === "notas" || tela === "faltas") abrir("detalhe");
-    else if (tela === "detalhe") abrir("materias");
-    else abrir("inicio");
+    if (window.history.state?.inatelNavigation) {
+      window.history.back();
+      return;
+    }
+
+    const anterior = tela === "login" ? "perfis"
+      : tela === "monitoria" || tela === "professor" ? "ajuda"
+        : tela === "ajuda" || tela === "notas" || tela === "faltas" ? "detalhe"
+          : tela === "detalhe" ? "materias" : "inicio";
+    navegar(anterior, sel, geral, true);
   }
 
   function escolher(item) {
     if (item.destino) abrir(item.destino);
     else if (item.nome === "Avisos") abrir("avisos");
     else if (item.nome === "Sair") {
-      setSel(null);
-      abrir("perfis");
+      navegar("perfis", null, geral, true);
     } else abrirGenerica(item.nome, item.icone);
   }
 

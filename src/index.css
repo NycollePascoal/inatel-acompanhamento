@@ -1166,6 +1166,7 @@ html, body {
   --borda: #3A424C;
   --cinza: #B0BAC5;
   color-scheme: dark;
+  background: #11151A;
 }
 
 :root[data-theme="escuro"] body {
